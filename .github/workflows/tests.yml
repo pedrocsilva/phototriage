@@ -1,0 +1,30 @@
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Tests use fake ExifTool scripts, so ExifTool itself is not installed here.
+      - name: Run all tests
+        shell: pwsh
+        run: ./tests/Run-All.ps1

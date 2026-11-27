@@ -1,0 +1,21 @@
+# Only the workflow's actions: the scripts are PowerShell with no package
+# dependencies, and ExifTool is installed by the user.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    commit-message:
+      prefix: "chore"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "07:30"
+      timezone: "Europe/Lisbon"
+    cooldown:
+      default-days: 3
+    open-pull-requests-limit: 10
+    groups:
+      github-actions-minor-patch:
+        update-types:
+          - "minor"
+          - "patch"

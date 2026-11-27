@@ -6,10 +6,10 @@ updates:
     directory: "/"
     commit-message:
       prefix: "chore"
+    # Monday, Wednesday and Friday.
     schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "07:30"
+      interval: "cron"
+      cronjob: "30 7 * * 1,3,5"
       timezone: "Europe/Lisbon"
     cooldown:
       default-days: 3
